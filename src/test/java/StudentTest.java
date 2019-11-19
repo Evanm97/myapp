@@ -21,6 +21,14 @@ class StudentTest {
     }
 
     @Test
+    void testDOB() {
+        Student student = new Student("Evan", 22, "05-06-1997", null, null, null);
+        String dob = student.getDOB();
+
+        assertEquals(dob, "05-06-1997");
+    }
+
+    @Test
     void testGetModules() {
         List<String> modules = new ArrayList<String>();
         modules.add("AI");
