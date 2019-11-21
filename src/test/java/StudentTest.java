@@ -1,5 +1,6 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.joda.time.LocalDate;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,10 +12,10 @@ class StudentTest {
 
     private List<Module> moduleList;
     private List<Course> courseList;
+    private Student student;
 
     @Test
     void testGetUsername() {
-        Student student = new Student("Evan", 22, null, null, null, null);
         String id = student.getUsername();
 
         assertEquals(id, "Evan22");
@@ -22,45 +23,43 @@ class StudentTest {
 
     @Test
     void testDOB() {
-        Student student = new Student("Evan", 22, "05-06-1997", null, null, null);
-        String dob = student.getDOB();
+        LocalDate dob = student.getDOB();
 
-        assertEquals(dob, "05-06-1997");
+        assertEquals(dob, new LocalDate(1997,6,5));
     }
 
     @Test
     void testGetModules() {
-        List<String> modules = new ArrayList<String>();
-        modules.add("AI");
-        modules.add("ML");
+        List<Module> modules = new ArrayList<Module>();
+        modules.add(new Module("AI", "CT421", null, null));
+        modules.add(new Module("Machine Learning", "CT4101", null, null));
 
-        Student student = new Student("Evan", 22, null, null, null, modules);
-        List<String> studentModules = student.getModules();
+        List<Module> m = student.getModules();
 
-        assertEquals(studentModules, modules);
+        assertEquals(modules.toString(), m.toString());
     }
 
     @Test
     void testGetCourses() {
-        Student student = new Student("Evan", 22, null, null, courseList, null);
-        List<Course> studentCourses = student.getCourses();
+        List<Course> studentCourses = new ArrayList<Course>();
+        studentCourses.add(new Course("BCT", new LocalDate(2016, 8, 31), new LocalDate(2020, 5, 15)));
 
-        System.out.println(courseList);
+        List<Course> c = student.getCourses();
 
-        assertEquals(studentCourses, courseList);
+        assertEquals(studentCourses.toString(), c.toString());
     }
 
     @BeforeEach
     void testSetup() {
-        Module ai = new Module(null, null, null, null);
-        Module ml = new Module(null, null, null, null);
-        moduleList = new ArrayList<Module>();
-        moduleList.add(ai);
-        moduleList.add(ml);
+        student = new Student("Evan", new LocalDate(1997, 6, 5), 123456);
 
-        Course bct = new Course("Computer Science");
-        courseList = new ArrayList<Course>();
-        courseList.add(bct);
+        Module ai = new Module("AI", "CT421", null, null);
+        Module ml = new Module("Machine Learning", "CT4101", null, null);
+        student.addModule(ai);
+        student.addModule(ml);
+
+        Course course = new Course("BCT", new LocalDate(2016, 8, 31), new LocalDate(2020, 5, 15));
+        student.addCourse(course);
     }
 
 }

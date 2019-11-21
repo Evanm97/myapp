@@ -29,4 +29,8 @@ public class Module {
     public List<Course> getAssociatedCourse() {
         return associatedCourses;
     }
+
+    public String toString() {
+        return name + ", " + id + ", " + students + ", " + associatedCourses;
+    }
 }

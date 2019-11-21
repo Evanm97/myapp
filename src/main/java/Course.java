@@ -1,30 +1,53 @@
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Course {
 
     private String name;
-    private List<Module> modules;
-    private List<Student> students;
+    private LocalDate academicStart;
+    private LocalDate academicEnd;
+    private List<Module> modules = new ArrayList<Module>();
+    private List<Student> students = new ArrayList<Student>();
 
-    public Course(final String name) {
+    public Course(final String name, final LocalDate academicStart, final LocalDate academicEnd) {
         this.name = name;
+        this.academicStart = academicStart;
+        this.academicEnd = academicEnd;
+
     }
 
     public String getName() {
         return name;
     }
 
-    public DateTime getAcademicStart() {
+    public LocalDate getAcademicStart() {
+        return academicStart;
+    }
 
-        LocalDate currentDate = LocalDate.now();
-        DateTime endDate = new DateTime("2020-06-20");
-        return endDate;
+    public LocalDate getAcademicEnd() {
+        return academicEnd;
+    }
+
+    public void addModule(Module module) {
+        modules.add(module);
+    }
+
+    public List getModules() {
+        return modules;
+    }
+
+    public void addStudent(Student student) {
+        students.add(student);
+    }
+
+    public List getRegisteredStudents() {
+        return students;
     }
 
     public String toString() {
-        return name;
+        return name + ", " + academicStart + ", " + academicEnd;
     }
 }
