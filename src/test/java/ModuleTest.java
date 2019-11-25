@@ -1,12 +1,12 @@
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.joda.time.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static junit.framework.TestCase.assertEquals;
 
 public class ModuleTest {
 
     @Test
-    void testGetNameAndGetId() {
+    public void testGetNameAndGetId() {
         Module module = new Module("SE", "CT417", null, null);
         String name = module.getName();
         String id = module.getId();

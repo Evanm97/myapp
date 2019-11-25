@@ -1,35 +1,37 @@
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.joda.time.LocalDate;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-class StudentTest {
+import static junit.framework.TestCase.assertEquals;
+
+public class StudentTest {
 
     private List<Module> moduleList;
     private List<Course> courseList;
     private Student student;
 
     @Test
-    void testGetUsername() {
+    public void testGetUsername() {
+        testSetup();
         String id = student.getUsername();
 
         assertEquals(id, "Evan22");
     }
 
     @Test
-    void testDOB() {
+    public void testDOB() {
+        testSetup();
         LocalDate dob = student.getDOB();
 
         assertEquals(dob, new LocalDate(1997,6,5));
     }
 
     @Test
-    void testGetModules() {
+    public void testGetModules() {
+        testSetup();
         List<Module> modules = new ArrayList<Module>();
         modules.add(new Module("AI", "CT421", null, null));
         modules.add(new Module("Machine Learning", "CT4101", null, null));
@@ -40,7 +42,8 @@ class StudentTest {
     }
 
     @Test
-    void testGetCourses() {
+    public void testGetCourses() {
+        testSetup();
         List<Course> studentCourses = new ArrayList<Course>();
         studentCourses.add(new Course("BCT", new LocalDate(2016, 8, 31), new LocalDate(2020, 5, 15)));
 
@@ -49,7 +52,6 @@ class StudentTest {
         assertEquals(studentCourses.toString(), c.toString());
     }
 
-    @BeforeEach
     void testSetup() {
         student = new Student("Evan", new LocalDate(1997, 6, 5), 123456);
 

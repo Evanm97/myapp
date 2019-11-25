@@ -1,27 +1,29 @@
 import org.joda.time.LocalDate;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static junit.framework.TestCase.assertEquals;
 
-class CourseTest {
+public class CourseTest {
 
     private Course course;
     private List<Student> students = new ArrayList<Student>();
     private ArrayList<Module> modules = new ArrayList<Module>();
 
     @Test
-    void testGetName() {
+    public void testGetName() {
+        testSetup();
         String name = course.getName();
 
         assertEquals("BCT", name);
     }
 
     @Test
-    void testAcademicDates() {
+    public void testAcademicDates() {
+        testSetup();
         LocalDate startDate = course.getAcademicStart();
         LocalDate endDate = course.getAcademicEnd();
 
@@ -30,7 +32,8 @@ class CourseTest {
     }
 
     @Test
-    void testGetRegisteredStudents() {
+    public void testGetRegisteredStudents() {
+        testSetup();
         students.add(new Student("Evan", new LocalDate(1995, 8, 31), 123456));
         List reqStudents = course.getRegisteredStudents();
 
@@ -38,14 +41,14 @@ class CourseTest {
     }
 
     @Test
-    void testGetModules() {
+    public void testGetModules() {
+        testSetup();
         modules.add(new Module("SE", "CT417", null, null));
         List courseModules = course.getModules();
 
         assertEquals(courseModules.toString(), modules.toString());
     }
 
-    @BeforeEach
     void testSetup() {
         course = new Course("BCT", new LocalDate(2016, 8, 31), new LocalDate(2020, 5, 15));
         Student student = new Student("Evan", new LocalDate(1995, 8, 31), 123456);
