@@ -7,11 +7,9 @@ public class Module {
     private List<Student> students;
     private List<Course> associatedCourses;
 
-    public Module(final String name, final String id, final List<Student> students, final List<Course> courses) {
+    public Module(final String name, final String id) {
         this.name = name;
         this.id = id;
-        this.students = students;
-        this.associatedCourses = courses;
     }
 
     public String getName() {

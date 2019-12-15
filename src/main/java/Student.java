@@ -9,12 +9,12 @@ public class Student {
 
     private String name;
     private LocalDate dob;
-    private int id;
+    private String id;
     private int age;
     private List<Module> modules = new ArrayList<Module>();
     private List<Course> courses = new ArrayList<Course>();
 
-    public Student(final String name, LocalDate dob, int id) {
+    public Student(final String name, LocalDate dob, String id) {
         this.name = name;
         this.dob = dob;
         this.id = id;
@@ -29,7 +29,7 @@ public class Student {
         return name + age;
     }
 
-    int getId() {
+    String getId() {
         return id;
     }
 
